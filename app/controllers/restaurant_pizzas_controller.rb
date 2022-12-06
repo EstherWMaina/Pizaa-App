@@ -1,7 +1,7 @@
 class RestaurantPizzasController < ApplicationController
 
     #handle error if data is not valid
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_method
     def create
       restaurant_pizza = RestaurantPizza.create!(restaurant_pizza_params)
       render json: restaurant_pizza.pizza ,except: [:created_at, :updated_at]
@@ -13,8 +13,8 @@ class RestaurantPizzasController < ApplicationController
       params.require(:restaurant_pizza).permit(:restaurant_id, :pizza_id, :price)
     end
   
-    def render_unprocessable_entity_response(invalid)
-      render json: { errors: "Validation errors"}, status: :unprocessable_entity
+    def unprocessable_entity_method(e)
+      render json: { errors: e.record.errors}, status: :unprocessable_entity
     end
   
   end
