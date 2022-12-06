@@ -30,6 +30,8 @@ gem "jbuilder"
 #serializers gem
 gem 'active_model_serializers'
 
+gem 'faker'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
