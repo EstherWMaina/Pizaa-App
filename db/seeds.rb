@@ -9,9 +9,10 @@ end
 
 5.times do 
     ingredients = []
-    3 times{||ingredients << Faker::Food.ingredient}
-end
-    pizza.create(name:ingredients[-1],
+    3.times do
+        ingredients << Faker::Food.ingredient
+    end
+    pizza.create(name:ingredients[-1], ingredients:
     ingredients.join(", ") )
 end
 
